@@ -10,7 +10,7 @@ class LoginPage(BasePage):
 
     def should_be_login_url(self):
         url = self.browser.current_url
-        assert 'loguin' in url, 'No \"login\" in url.'
+        assert 'login' in url, 'No \"login\" in url.'
 
     def should_be_login_form(self):
         # реализуйте проверку, что есть форма логина
