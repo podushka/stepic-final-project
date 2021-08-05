@@ -1,8 +1,25 @@
+import pytest, time, random
 from pages.base_page import BasePage
 from pages.locators import LoginPageLocators
 
 
 class LoginPage(BasePage):
+
+    def generate_register(self):
+        email = str(time.time()) + "@fakemail.org"
+        password = ''.join(["{}".format(random.randint(0, 9)) for num in range(0, 10)])
+        return (email, password)
+
+    def register_new_user(self, email, password):
+        email_field = self.browser.find_element(*LoginPageLocators.EMAIL_FIELD)
+        password_field = self.browser.find_element(*LoginPageLocators.PASSWORD_FIELD)
+        password_repeat_field = self.browser.find_element(*LoginPageLocators.PASSWORD_REPEAT_FIELD)
+        register_button = self.browser.find_element(*LoginPageLocators.REGISTER_BUTTON)
+        email_field.send_keys(email)
+        password_field.send_keys(password)
+        password_repeat_field.send_keys(password)
+        register_button.click()
+
     def should_be_login_page(self):
         self.should_be_login_url()
         self.should_be_login_form()
