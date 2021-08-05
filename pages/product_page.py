@@ -19,6 +19,11 @@ class ProductPage(BasePage):
         add_button.click()
         #self.solve_quiz_and_get_code()
 
+    def add_to_cart_with_code(self):
+        add_button = self.browser.find_element(*ProductPageLocators.ADD_TO_BASKET_BUTTON)
+        add_button.click()
+        self.solve_quiz_and_get_code()
+
     def should_be_succes_messages(self):
         assert self.is_element_present(*ProductPageLocators.SUCCES_MESSAGE), \
             'Succes messages is not presented'
